@@ -35,7 +35,7 @@ pico_sdk_init()
 
 # Add executable. Default name is the project name, version 0.1
 
-add_executable(pwm_servo_lcd pwm_servo_lcd.c displayLCD.c servo_display.c ssd1306.c servo_control.c matrix.c )
+add_executable(pwm_servo_lcd pwm_servo_lcd.c servo_display.c ssd1306.c servo_control.c matrix.c )
 
 pico_set_program_name(pwm_servo_lcd "pwn_servo_lcd")
 pico_set_program_version(pwm_servo_lcd "0.1")

@@ -7,7 +7,6 @@
 #include "pico/stdlib.h"
 #include "hardware/pwm.h"
 #include "servo_display.h"
-#include "displayLCD.h"
 #include "servo_control.h" // Inclua o arquivo de controle do servo
 #include "matrix.h"
 
