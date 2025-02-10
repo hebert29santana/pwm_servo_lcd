@@ -1,0 +1,29 @@
+{
+    "version": 1,
+    "author": "Hebert Santana - IFBA Ilhéus",
+    "editor": "wokwi",
+    "parts": [
+      { "type": "board-pi-pico-w", "id": "pico", "top": -12.85, "left": -73.25, "attrs": {} },
+      { "type": "wokwi-servo", "id": "servo1", "top": -30.8, "left": 57.6, "attrs": {} },
+      {
+        "type": "wokwi-rgb-led",
+        "id": "rgb1",
+        "top": 75.8,
+        "left": -201.3,
+        "rotate": 270,
+        "attrs": { "common": "cathode" }
+      }
+    ],
+    "connections": [
+      [ "pico:GP0", "$serialMonitor:RX", "", [] ],
+      [ "pico:GP1", "$serialMonitor:TX", "", [] ],
+      [ "pico:GND.8", "servo1:GND", "black", [ "h0" ] ],
+      [ "pico:3V3", "servo1:V+", "red", [ "h29.11", "v-9.7" ] ],
+      [ "pico:GP22", "servo1:PWM", "blue", [ "h38.71", "v-67.4" ] ],
+      [ "pico:GP11", "rgb1:G", "green", [ "h-48", "v-32.1" ] ],
+      [ "rgb1:B", "pico:GP12", "blue", [ "h66.4", "v50.96" ] ],
+      [ "rgb1:R", "pico:GP13", "red", [ "h47.2", "v33.4", "h57.6" ] ],
+      [ "pico:GND.4", "rgb1:COM", "black", [ "h-76.8", "v-52.46" ] ]
+    ],
+    "dependencies": {}
+  }
