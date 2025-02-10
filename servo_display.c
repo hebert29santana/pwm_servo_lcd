@@ -1,6 +1,14 @@
 #include "servo_display.h"
 #include "pico/stdlib.h"
 #include <math.h> // Para usar sinf e cosf
+#include <stdio.h>
+
+// Função para exibir o ângulo no display
+void display_angle(ssd1306_t *ssd, uint8_t angle) {
+    char buffer[16]; // Buffer para armazenar a string formatada
+    sprintf(buffer, "Angulo: %d", angle); // Formata a string com o ângulo
+    ssd1306_draw_string(ssd, buffer, 0, 50); // Exibe a string no display (posição x=0, y=50)
+}
 
 // Função para converter graus em radianos
 float to_radians(uint8_t degrees) 
@@ -35,6 +43,9 @@ void draw_servo(ssd1306_t *ssd, uint8_t angle)
 
     // Desenha o braço
     ssd1306_line(ssd, arm_x, arm_y, end_x, end_y, true);
+
+    // Exibe o ângulo no display
+    display_angle(ssd, angle);
 
     // Atualiza o display
     ssd1306_send_data(ssd);
