@@ -9,6 +9,7 @@
 #include "servo_display.h"
 #include "displayLCD.h"
 #include "servo_control.h" // Inclua o arquivo de controle do servo
+#include "matrix.h"
 
 #define LED_VERDE_PIN 11
 #define LED_AZUL_PIN 12
@@ -23,8 +24,18 @@ void set_led_color(uint8_t vermelho, uint8_t verde, uint8_t azul) {
     pwm_set_gpio_level(LED_AZUL_PIN, azul);
 }
 
+// Função para contagem regressiva na matriz de LEDs
+void countdown() {
+    for (int i = 5; i > 0; i--) {
+        displayNumber(i); // Exibe o número na matriz de LEDs
+        sleep_ms(1000);  // Espera 1 segundo
+    }
+    npClear(); // Limpa a matriz de LEDs após a contagem
+}
+
 int main() {
-    
+    npInit(LED_PIN);
+
     // Incializa o Pino para o Servo Motor
     gpio_set_function(SERVO_PIN, GPIO_FUNC_PWM);
     uint slice_num_servo = pwm_gpio_to_slice_num(SERVO_PIN);
@@ -59,19 +70,22 @@ int main() {
     set_servo_pulse_width(2400);
     draw_servo(&ssd, 180);
     update_rgb_led(180);
-    sleep_ms(5000);
+    //sleep_ms(5000);
+    countdown();
 
     // 3. Posiciona o servo em 90° (1470µs)
     set_servo_pulse_width(1470);
     draw_servo(&ssd, 90);
     update_rgb_led(90);
-    sleep_ms(5000);
+    //sleep_ms(5000);
+    countdown();
 
     // 4. Posiciona o servo em 0° (500µs)
     set_servo_pulse_width(500);
     draw_servo(&ssd, 0);
     update_rgb_led(0);
-    sleep_ms(5000);
+    //sleep_ms(5000);
+    countdown();
 
     // 5. Movimentação periódica suave entre 0° e 180°
 

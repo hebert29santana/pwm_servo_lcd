@@ -35,10 +35,13 @@ pico_sdk_init()
 
 # Add executable. Default name is the project name, version 0.1
 
-add_executable(pwm_servo_lcd pwm_servo_lcd.c displayLCD.c servo_display.c ssd1306.c servo_control.c )
+add_executable(pwm_servo_lcd pwm_servo_lcd.c displayLCD.c servo_display.c ssd1306.c servo_control.c matrix.c )
 
 pico_set_program_name(pwm_servo_lcd "pwn_servo_lcd")
 pico_set_program_version(pwm_servo_lcd "0.1")
+
+# Generate PIO header
+pico_generate_pio_header(pwm_servo_lcd ${CMAKE_CURRENT_LIST_DIR}/ws2818b.pio)
 
 # Modify the below lines to enable/disable output over UART/USB
 pico_enable_stdio_uart(pwm_servo_lcd 1)
@@ -58,6 +61,8 @@ target_link_libraries(pwm_servo_lcd
             pico_stdlib
             hardware_pwm
             hardware_i2c
+            hardware_gpio
+            hardware_pio
             m
         )
 
